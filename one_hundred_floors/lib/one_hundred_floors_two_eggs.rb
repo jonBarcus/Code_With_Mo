@@ -39,7 +39,8 @@ class Building
       return @new_level && false
     else
       @highest_safe_floor = floor_drop
-      return floor_drop && false
+      @new_level = floor_drop += 1
+      return false
     end
   end
 
@@ -56,11 +57,9 @@ class Building
 
   def egg_test
 
-    new_level = starting_level
+    @new_level = starting_level
 
-    while egg_break(new_level) == false
-      # new_level = @new_level
-      new_level += 1
+    while egg_break(@new_level) == false
     end
 
     return @highest_safe_floor
