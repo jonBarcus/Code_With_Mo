@@ -64,23 +64,36 @@ describe Building do
     end
   end
 
-  context "100 story building with 8th terminal" do
-    subject(:build){Building.new(100, 8)}
+  context "100 story building with 0th terminal" do
+    subject(:build){Building.new(100, 0)}
     it("should have 100 floors") do
       expect(build.floors).to eq(100)
     end
-    it("should have the terminal floor of 8") do
-      expect(build.terminal_floor).to eq(8)
+    it("should have the terminal floor of 0") do
+      expect(build.terminal_floor).to eq(0)
     end
     it("should have a starting level of 50") do
       expect(build.starting_level).to eq(50)
     end
-    it("should have a safe dropping level of 7") do
-      expect(build.egg_test).to eq(7)
-    end
-     it("should have a counter value of 9") do
-      expect(build.egg_test).to eq(7)
-      expect(build.counter_method).to eq(9)
+    it("should have a safe dropping level of 0") do
+      expect(build.egg_test).to eq(0)
     end
   end
+
+  context "250 story building with 250th terminal" do
+    subject(:build){Building.new(250, 250)}
+    it("should have 250 floors") do
+      expect(build.floors).to eq(250)
+    end
+    it("should have the terminal floor of 250") do
+      expect(build.terminal_floor).to eq(250)
+    end
+    it("should have a starting level of 125") do
+      expect(build.starting_level).to eq(125)
+    end
+    it("should have a safe dropping level of 249") do
+      expect(build.egg_test).to eq(249)
+    end
+  end
+
 end
