@@ -1,8 +1,12 @@
+require 'pry'
+
 class Building
 
   def initialize(floors, terminal_floor)
     @floors = floors
     @terminal_floor = terminal_floor
+    @highest_safe_floor = 0
+    @test = false
   end
 
   def floors
@@ -21,7 +25,45 @@ class Building
 
   end
 
+  def move_test_down
+    new_start = 1
+    return new_start
+  end
+
+  def egg_break(floor_drop)
+    if floor_drop == terminal_floor
+      @highest_safe_floor = floor_drop - 1
+      return true
+    elsif floor_drop > terminal_floor
+      @new_level = move_test_down
+      return @new_level && false
+    else
+      @highest_safe_floor = floor_drop
+      return floor_drop && false
+    end
+  end
+
+
+
+  # def egg_break(floor_drop)
+  #   if floor_drop >= terminal_floor
+  #     return true
+  #   else
+  #     return floor_drop && false
+  #   end
+  # end
+
+
   def egg_test
+
+    new_level = starting_level
+
+    while egg_break(new_level) == false
+      # new_level = @new_level
+      new_level += 1
+    end
+
+    return @highest_safe_floor
 
   end
 
