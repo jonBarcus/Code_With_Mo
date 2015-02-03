@@ -35,13 +35,18 @@ class Building
       new_start = (starting_level / 2 )
     else
       new_start = ((floors - old_starting_level) / 2 ) + old_starting_level
+      if old_starting_level == new_start
+        new_start = new_start + 1
+      end
     end
     return new_start
   end
 
   def egg_break(floor_drop)
-    if floor_drop == terminal_floor
+    if floor_drop == terminal_floor && @broken_egg == true
       @highest_safe_floor = floor_drop - 1
+      return true
+    elsif floor_drop > terminal_floor && terminal_floor == 0
       return true
     elsif floor_drop > terminal_floor
       @new_level = move_test_down
